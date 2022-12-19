@@ -5,11 +5,14 @@ const { Product, Category, Tag, ProductTag } = require("../../models");
 
 // get all products
 router.get("/", async (req, res) => {
-  // find all products
-  // be sure to include its associated Category and Tag data
   try {
     const productData = await Product.findAll({
-      include: [{ model: Category }, { model: Tag }],
+      //including Category model
+      //Including Tag Model. JOINING Tag model through ProductTag table
+      include: [
+        { model: Category, as: "category" },
+        { model: Tag, through: ProductTag, as: "productId" },
+      ],
     });
     res.status(200).json(productData);
   } catch (err) {
@@ -17,21 +20,21 @@ router.get("/", async (req, res) => {
   }
 });
 
-// get one product
+// get one product by id
 router.get("/:id", async (req, res) => {
-  // find a single product by its `id`
-  // be sure to include its associated Category and Tag data
   try {
-    const productData = await Product.findPk(req.params.id, {
-      include: [{ model: Category }, { model: Tag }],
+    const productDataById = await Product.findByPk(req.params.id, {
+      include: [
+        { model: Category, as: "category" },
+        { model: Tag, through: ProductTag, as: "productId" },
+      ],
     });
-
-    if (!productData) {
-      res.status(404).json({ message: "no product found with this id!" });
+    //---if id is not found--//
+    if (!productDataById) {
+      res.status(404).json({ message: "no product with this id exists!" });
       return;
     }
-
-    res.status(200).json(productData);
+    res.status(200).json(productDataById);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -39,14 +42,6 @@ router.get("/:id", async (req, res) => {
 
 // create new product
 router.post("/", (req, res) => {
-  /* req.body should look like this...
-    {
-      product_name: "Basketball",
-      price: 200.00,
-      stock: 3,
-      tagIds: [1, 2, 3, 4]
-    }
-  */
   Product.create(req.body)
     .then((product) => {
       // if there's product tags, we need to create pairings to bulk create in the ProductTag model
@@ -111,8 +106,23 @@ router.put("/:id", (req, res) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", async (req, res) => {
   // delete one product by its `id` value
+  try {
+    const deletedProductData = await Product.destroy({
+      where: {
+        id: req.params.id,
+      },
+    });
+    //---if product id not found--//
+    if (!deletedProductData) {
+      res.status(404).json({ message: "Sorry! No product by this id exists." });
+      return;
+    }
+    res.status(200).json(deletedProductData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;
