@@ -6,12 +6,12 @@ This project is focused on honing skills working in the backend. This challenge 
 
 ## TABLE OF CONTENTS
 
-    [INSTALLATION]
-    [USAGE]
-    [LICENSE]
-    [TESTS]
-    [QUESTIONS]
-    [CHECK IT OUT!]
+- [INSTALLATION](#installation)
+- [USAGE](#usage)
+- [LICENSE](#installation)
+- [TESTS](#tests)
+- [QUESTIONS](#questions)
+- [CHECK IT OUT!](#checkitout)
 
 ## INSTALLATION
 
@@ -58,3 +58,5 @@ You may also use Insomnia to test the routes for functionality for this applicat
 If you have any questions, please do not hesitate to contact me at: leann.labra@gmail.com
 
 ## CHECK IT OUT!
+
+[Click me!](https://drive.google.com/file/d/1TtntVW0NxJn_3iiGmnebmAtyTDWuRgoh/view)
