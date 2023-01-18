@@ -8,7 +8,7 @@ This project is focused on honing skills working in the backend. This challenge 
 
 - [INSTALLATION](#installation)
 - [USAGE](#usage)
-- [LICENSE](#installation)
+- [LICENSE](#license)
 - [TESTS](#tests)
 - [QUESTIONS](#questions)
 - [CHECK IT OUT!](#checkitout)
@@ -55,7 +55,7 @@ You may also use Insomnia to test the routes for functionality for this applicat
 
 ## QUESTIONS
 
-If you have any questions, please do not hesitate to contact me at: leann.labra@gmail.com
+If you have any questions, please do not hesitate to contact me at: leann.labra@gmail.com.
 
 ## CHECK IT OUT!
 
